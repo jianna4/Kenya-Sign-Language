@@ -60,14 +60,14 @@ Convert text to natural speech output.
 
 This final stage demonstrates full translation from gesture to spoken language.
 
-🧩 System Architecture
+System Architecture
 Component Description
 Frontend (To Be Added) Will handle camera input and show results.
 Backend (Django) Hosts APIs, manages user data, and runs ML models.
 ML Engine Recognizes and classifies KSL gestures.
 Text-to-Speech Module (TTS) Converts recognized text into spoken audio.
 Database (PostgreSQL) Stores gesture data, model results, and logs.
-💻 Tech Stack
+Tech Stack
 Layer Technologies
 Backend Django, FastAPI (for ML API)
 ML/AI TensorFlow / PyTorch
