@@ -1,8 +1,8 @@
-🧠 EchoSign – Kenyan Sign Language (KSL) to Speech Translator
+EchoSign – Kenyan Sign Language (KSL) to Speech Translator
 
 EchoSign is an assistive AI system that bridges communication between the Deaf community and the hearing population. It recognizes Kenyan Sign Language (KSL) gestures, converts them into text, and finally transforms that text into speech — enabling real-time communication and inclusivity.
 
-🌍 Overview
+Overview
 
 EchoSign is built to understand, translate, and vocalize KSL gestures using computer vision and machine learning.
 
@@ -10,7 +10,7 @@ The project’s goal is to empower Deaf and Hard of Hearing individuals by givin
 
 This version focuses on KSL to Speech, but in future iterations, we will expand to include Speech to KSL, creating a full two-way communication bridge.
 
-🎯 Objectives
+Objectives
 
 Build a Django-based system that detects and translates KSL gestures into English text.
 
@@ -20,7 +20,7 @@ Create a foundation for future Speech-to-KSL translation.
 
 Promote accessibility, inclusivity, and communication equity through AI.
 
-⚙️ Project Workflow
+Project Workflow
 STEP 1: Pick 5 High-Impact KSL Words
 
 Select five meaningful and frequently used KSL gestures (e.g., Hello, Thank You, Sorry, Yes, No).
@@ -60,14 +60,14 @@ Convert text to natural speech output.
 
 This final stage demonstrates full translation from gesture to spoken language.
 
-🧩 System Architecture
+System Architecture
 Component Description
 Frontend (To Be Added) Will handle camera input and show results.
 Backend (Django) Hosts APIs, manages user data, and runs ML models.
 ML Engine Recognizes and classifies KSL gestures.
 Text-to-Speech Module (TTS) Converts recognized text into spoken audio.
 Database (PostgreSQL) Stores gesture data, model results, and logs.
-💻 Tech Stack
+Tech Stack
 Layer Technologies
 Backend Django, FastAPI (for ML API)
 ML/AI TensorFlow / PyTorch
