@@ -8,10 +8,10 @@ import time
 # CONFIGURATION
 # ================================
 WORDS = [ "this"]
-NUM_SAMPLES = 50
+NUM_SAMPLES = 25
 DURATION = 4
 FPS = 30
-SAVE_DIR = "ksl_video_data_this"
+SAVE_DIR = "this"
 
 os.makedirs(SAVE_DIR, exist_ok=True)
 
