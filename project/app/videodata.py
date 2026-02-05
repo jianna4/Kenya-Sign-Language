@@ -4,46 +4,36 @@ import numpy as np
 import os
 import time
 
-# ================================
-# CONFIGURATION
-# ================================
+
 WORDS = [ "this"]
 NUM_SAMPLES = 25
 DURATION = 4
 FPS = 30
 SAVE_DIR = "this"
 
-os.makedirs(SAVE_DIR, exist_ok=True)
+os.makedirs(SAVE_DIR, exist_ok=True) 
 
-# ================================
-# MEDIAPIPE HANDS
-# ================================
 mp_hands = mp.solutions.hands.Hands(
-    static_image_mode=False,
+    static_image_mode=False, #tracks videos instead
     max_num_hands=2,
     min_detection_confidence=0.6,
-    min_tracking_confidence=0.5
+    min_tracking_confidence=0.6
 )
 
 mp_draw = mp.solutions.drawing_utils
 mp_styles = mp.solutions.drawing_styles
 
-# ================================
-# CAMERA SETUP
-# ================================
+#CAP_DSHOW improves camera stability on Windows
 cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 
 if not cap.isOpened():
-    print("❌ Webcam not accessible")
+    print(" Webcam not accessible")
     exit()
 
-# ================================
-# MAIN LOOP
-# ================================
 for word in WORDS:
-    print(f"\n👉 Sign: '{word}'")
+    print(f"\n Sign: '{word}'")
 
     for i in range(NUM_SAMPLES):
         sequence = []
