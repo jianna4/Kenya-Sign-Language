@@ -1,4 +1,4 @@
-EchoSign – Kenyan Sign Language (KSL) to Speech Translator
+ Kenyan Sign Language (KSL) to Speech Translator
 
 EchoSign is an assistive AI system that bridges communication between the Deaf community and the hearing population. It recognizes Kenyan Sign Language (KSL) gestures, converts them into text, and finally transforms that text into speech — enabling real-time communication and inclusivity.
 
