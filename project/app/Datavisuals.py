@@ -44,7 +44,7 @@ for frame_data in sequence:
 
     cv2.imshow("Hand Replay", canvas)
 
-    if cv2.waitKey(30) & 0xFF == 27:
+    if cv2.waitKey(100) & 0xFF == 27:
         break
 
 cv2.destroyAllWindows()
