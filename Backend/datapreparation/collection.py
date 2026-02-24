@@ -5,8 +5,9 @@ import os
 import time
 
 
+
 WORDS = [ "this"]
-NUM_SAMPLES = 25
+NUM_SAMPLES = 210
 DURATION = 4
 FPS = 30
 SAVE_DIR = "this"

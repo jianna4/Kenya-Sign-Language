@@ -104,7 +104,7 @@ echosign/
 ⚡ Setup & Installation
 
 Clone the Repository
-git clone https://github.com/yourusername/echosign.git
+git clone https://github.com/jianna4/Kenya-Sign-Language.git
 cd echosign
 
 Create and Activate a Virtual Environment

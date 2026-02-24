@@ -4,25 +4,17 @@ import numpy as np
 from tensorflow.keras.models import load_model
 import time
 
-# ==============================
-# CONFIGURATION
-# ==============================
-MODEL_PATH = r"F:\projects\KSL\test\KSL_model_a.keras"
+
+MODEL_PATH = r"F:\projects\KSL\KSL_Backend\Backend\testing\KSL_model_b.keras"
 LABELS = ["A", "this", "MOTHER", "MY", "is"]
 MAX_FRAMES = 40
 GESTURE_COOLDOWN = 5.0
 CONFIDENCE_THRESHOLD = 0.5
 FPS = 30
 
-# ==============================
-# LOAD MODEL
-# ==============================
 model = load_model(MODEL_PATH)
 print("✅ Model loaded!")
 
-# ==============================
-# MEDIAPIPE HANDS
-# ==============================
 mp_hands = mp.solutions.hands.Hands(
     static_image_mode=False,
     max_num_hands=2,
@@ -32,9 +24,6 @@ mp_hands = mp.solutions.hands.Hands(
 mp_draw = mp.solutions.drawing_utils
 mp_styles = mp.solutions.drawing_styles
 
-# ==============================
-# CAMERA SETUP
-# ==============================
 cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
@@ -43,9 +32,6 @@ if not cap.isOpened():
     print("❌ Webcam not accessible")
     exit()
 
-# ==============================
-# STATE VARIABLES
-# ==============================
 last_prediction = ""
 last_confidence = 0.0
 last_prediction_time = 0
@@ -106,9 +92,7 @@ try:
                 break
             continue
 
-        # ==============================
-        # READY OR CAPTURING?
-        # ==============================
+        
         if not is_capturing:
             # In READY state — look for sustained hand presence
             if hands_present:
