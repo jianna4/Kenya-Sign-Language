@@ -6,11 +6,11 @@ import time
 
 
 
-WORDS = [ "this"]
+WORDS = [ "isr"]
 NUM_SAMPLES = 210
 DURATION = 4
 FPS = 30
-SAVE_DIR = "this"
+SAVE_DIR = "isr"
 
 os.makedirs(SAVE_DIR, exist_ok=True) 
 
