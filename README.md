@@ -1,155 +1,232 @@
- Kenyan Sign Language (KSL) to Speech Translator
+---
+title: KSL Sign Language Translator
+emoji: 🤟
+colorFrom: green
+colorTo: blue
+sdk: docker
+app_port: 7860
+pinned: false
+---
 
-EchoSign is an assistive AI system that bridges communication between the Deaf community and the hearing population. It recognizes Kenyan Sign Language (KSL) gestures, converts them into text, and finally transforms that text into speech — enabling real-time communication and inclusivity.
+# KSL Sign Language Translator
 
- Overview
+Real-time sign language translation using MediaPipe and TensorFlow Lite.
 
-EchoSign is built to understand, translate, and vocalize KSL gestures using computer vision and machine learning.
+## Model Files Required
 
-The project’s goal is to empower Deaf and Hard of Hearing individuals by giving them a voice in any conversation through intelligent gesture recognition and speech synthesis.
+Place these files in your Space:
+- `kls_model_lite.tflite` - Your trained sign language model
+- `hand_landmarker.task` - MediaPipe hand landmark model
+---
+```markdown
+# 🤟 KSL Sign Language Translator
 
-This version focuses on KSL to Speech, but in future iterations, we will expand to include Speech to KSL, creating a full two-way communication bridge.
+Real-time sign language translation application that converts Kenyan Sign Language (KSL) gestures into spoken words using computer vision and machine learning.
 
- Objectives
+## 🌟 Features
 
-Build a Django-based system that detects and translates KSL gestures into English text.
+- **Real-time Sign Recognition** - Instant translation of sign language gestures
+- **Colorful Hand Landmarks** - Visual feedback with color-coded finger tracking
+- **Immediate Audio Feedback** - Each recognized sign is spoken aloud immediately
+- **Live Video Processing** - Works with your webcam in real-time
+- **User-Friendly Interface** - Simple Gradio web interface
 
-Convert recognized text into audible speech output.
 
-Create a foundation for future Speech-to-KSL translation.
+## 🎯 Live Demo
 
-Promote accessibility, inclusivity, and communication equity through AI.
+Try it live on Hugging Face Spaces: [(https://huggingface.co/spaces/jianna4/KENYASIGNLANGUAGE)]
 
- Project Workflow
-STEP 1: Pick 5 High-Impact KSL Words
+## 📋 Table of Contents
 
-Select five meaningful and frequently used KSL gestures (e.g., Hello, Thank You, Sorry, Yes, No).
-These form the base vocabulary for the initial model.
+- [How It Works](#how-it-works)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Model Details](#model-details)
+- [Technical Stack](#technical-stack)
+- [Troubleshooting](#troubleshooting)
+- [License](#license)
 
-STEP 2: Record Your Own KSL Vector Dataset (20 mins)
+## 🔍 How It Works
 
-Record short video clips or image frames of each sign.
-Ensure:
+1. **Hand Detection** - MediaPipe detects hand landmarks in real-time
+2. **Feature Extraction** - 126 features (63 per hand) extracted from hand positions
+3. **Sequence Processing** - Features buffered over 40 frames
+4. **Sign Classification** - TensorFlow Lite model predicts the sign
+5. **Speech Output** - Recognized signs spoken using text-to-speech
 
-Consistent lighting and background.
+### Visual Guide
+- **White Circle** - Palm center
+- **Red Thumb** - Thumb tracking
+- **Blue Index Finger** - Index finger tracking
+- **Green Middle Finger** - Middle finger tracking
+- **Yellow Ring Finger** - Ring finger tracking
+- **Magenta Pinky** - Pinky finger tracking
 
-The same signer performs each gesture.
+##  Installation
 
-Multiple samples are captured for accuracy.
+### Local Development
 
-The dataset will serve as input for the machine learning model.
-
-STEP 3: Train Your KSL Model (5 mins)
-
-Train the model to recognize and classify each KSL gesture.
-The model outputs the corresponding English word once a sign is recognized.
-
-This step establishes the foundation of the gesture recognition process.
-
-STEP 4: Run Real-Time KSL → Speech (Demo!)
-
-After training, the model runs in real time:
-
-Capture live video input.
-
-Detect the KSL sign.
-
-Translate it to text.
-
-Convert text to natural speech output.
-
-This final stage demonstrates full translation from gesture to spoken language.
-
-System Architecture
-Component Description
-Frontend (To Be Added) Will handle camera input and show results.
-Backend (Django) Hosts APIs, manages user data, and runs ML models.
-ML Engine Recognizes and classifies KSL gestures.
-Text-to-Speech Module (TTS) Converts recognized text into spoken audio.
-Database (PostgreSQL) Stores gesture data, model results, and logs.
-Tech Stack
-Layer Technologies
-Backend Django, FastAPI (for ML API)
-ML/AI TensorFlow / PyTorch
-Database PostgreSQL
-Frontend To be implemented (React or React Native)
-Speech Engine pyttsx3 / gTTS
-Version Control Git + GitHub
-Deployment Options Railway, Render, or AWS
-🧠 How EchoSign Works
-
-The user performs a KSL gesture in front of the camera.
-
-The system captures and processes the image frames.
-
-The trained ML model predicts the corresponding English word or phrase.
-
-The backend converts that text into speech output using a TTS module.
-
-The audio is played, completing gesture-to-speech translation.
-
-🏗️ Project Structure
-echosign/
-│
-├── backend/
-│ ├── api/ # Django APIs for ML & TTS
-│ ├── models/ # Gesture recognition models
-│ ├── tts/ # Text-to-speech handling
-│ └── dataset/ # KSL dataset
-│
-├── requirements.txt
-├── manage.py
-└── README.md
-
-⚡ Setup & Installation
-
-Clone the Repository
+1. Clone the repository
+```bash
 git clone https://github.com/jianna4/Kenya-Sign-Language.git
-cd echosign
+cd ksl-translator
+```
 
-Create and Activate a Virtual Environment
+2. Create virtual environment
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
 
-Windows: venv\Scripts\activate
-
-Linux/Mac: source venv/bin/activate
-
-Install Dependencies
+3. Install dependencies
+```bash
 pip install -r requirements.txt
+```
 
-Configure Database (PostgreSQL)
-Update the .env file:
+4. Download model files
+Place your model files in the project directory:
+- `kls_model_lite.tflite` - Sign language recognition model
+- `hand_landmarker.task` - Hand landmark detection model
 
-DB_NAME=echosign_db
-DB_USER=postgres
-DB_PASSWORD=yourpassword
-DB_HOST=localhost
-DB_PORT=5432
+5. Run the application
+```bash
+python app.py
+```
 
-Run Migrations
-python manage.py makemigrations
-python manage.py migrate
+### Hugging Face Spaces Deployment
 
-Start the Server
-python manage.py runserver
+1. Create a new Space on Hugging Face
+2. Choose Gradio SDK
+3. Upload all project files including:
+   - `app.py`
+   - `handLandmarks.py`
+   - `prediction.py`
+   - `texttospeech.py`
+   - `requirements.txt`
+   - Model files (`.tflite` and `.task`)
+4. The Space will automatically build and launch
 
-☁️ Deployment
+##  Usage
 
-You can deploy EchoSign on:
+1. **Allow Camera Access** - Grant permission when prompted
+2. **Sign Clearly** - Position your hands in the camera frame
+3. **Hold Each Sign** - Maintain the sign for about 1 second
+4. **Listen** - The recognized word will be spoken immediately
+5. **Reset** - Use the reset button to clear the recognition buffer
 
-Railway (simple and free hosting for Django apps)
+### Supported Signs
 
-Render (for production-ready hosting)
+Currently supports:
+- father
+- hello
+- is
+- my
 
-AWS EC2 or Lambda (for scalable cloud hosting)
+*More signs can be added by retraining the model*
 
-🧭 Future Expansion
+##  Project Structure
 
-✅ Speech-to-KSL Translation – The next phase will enable two-way interaction.
-✅ Offline Functionality – For users in low-connectivity regions.
-✅ AR/VR Integration – To teach KSL interactively.
-✅ Expanded Vocabulary – To include more complex KSL phrases.
+```
+ksl-translator/
+├── app.py                 # Main application and Gradio interface
+├── handLandmarks.py       # Hand detection and visualization
+├── prediction.py          # TensorFlow Lite model prediction
+├── texttospeech.py        # Text-to-speech functionality
+├── requirements.txt       # Python dependencies
+├── README.md             # This file
+├── kls_model_lite.tflite # Sign language model
+└── hand_landmarker.task   # Hand landmark model
+```
 
-👩‍💻 Team
+##  Technical Stack
 
-Project Lead: Joan Maina
-Domain: Machine Learning | Accessibility AI | Computer Vision
+- **Frontend**: Gradio (Web interface)
+- **Computer Vision**: MediaPipe, OpenCV
+- **Machine Learning**: TensorFlow Lite
+- **Speech Synthesis**: gTTS
+- **Language**: Python 3.9+
+
+### Key Libraries
+
+```
+gradio==4.19.2          # Web interface
+opencv-python==4.9.0.80 # Video processing
+numpy==1.24.3           # Numerical operations
+tensorflow==2.15.0      # Model inference
+mediapipe==0.10.9       # Hand landmark detection
+pyttsx3==2.90          # Text-to-speech
+Pillow==10.1.0         # Image processing
+```
+
+## 🛠️ Troubleshooting
+
+### Common Issues
+
+**ModuleNotFoundError**
+- Ensure file names match imports exactly (case-sensitive on Linux)
+- Check all Python files are uploaded to the Space
+
+**Camera Not Working**
+- Verify camera permissions are granted
+- Try refreshing the page
+- Check if another application is using the camera
+
+**No Signs Detected**
+- Ensure good lighting conditions
+- Keep hands fully in frame
+- Hold signs for at least 1 second
+- Wait for colorful landmarks to appear on hands
+
+**TTS Not Working**
+- For pyttsx3: May require system audio drivers
+- For gTTS: Check internet connection
+- Try the alternative TTS implementation
+
+**Slow Performance**
+- Reduce MAX_FRAMES in configuration
+- Lower video quality in settings
+- Close other applications
+
+## 🚀 Future Improvements
+
+- [ ] Support for more signs
+- [ ] Sentence-level translation
+- [ ] Multiple language support
+- [ ] Mobile app version
+- [ ] Sign language to text saving
+- [ ] Cloud model training interface
+- [ ] Custom sign addition feature
+- [ ] Performance optimizations for mobile devices
+
+##  Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+##  License
+
+This project is licensed under the apache License - see the LICENSE file for details.
+
+##  Acknowledgments
+
+- MediaPipe for hand landmark detection
+- TensorFlow for model inference
+- Gradio for the web interface
+- The KSL community for inspiration
+
+##  Contact
+
+Joan Maina - mainajoan555@gmail.com
+
+Project Link: (https://huggingface.co/spaces/jianna4/KENYASIGNLANGUAGE)
+
+---
+
+**Made with ❤️ for the Kenyan Sign Language community**
+```

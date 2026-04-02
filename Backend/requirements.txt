@@ -1,7 +1,0 @@
-
-fastapi
-uvicorn[standard]
-numpy
-opencv-python
-mediapipe
-tensorflow

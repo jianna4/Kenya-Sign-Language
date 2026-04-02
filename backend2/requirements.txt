@@ -1,0 +1,10 @@
+numpy==1.24.3
+opencv-python-headless==4.9.0.80
+mediapipe==0.10.33
+tensorflow==2.15.0
+gradio==6.10.0
+gTTS==2.5.1
+Pillow==10.4.0
+python-multipart==0.0.20
+requests==2.31.0
+protobuf==3.20.3
